@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bikewatching</title>
+
+    <!-- Step 0.5: bike favicon -->
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+    <!-- Step 1.1: Mapbox GL JS CSS -->
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="map.css" />
+
+    <script src="map.js" type="module"></script>
+  </head>
+  <body>
+    <!-- Step 5.1: title and time filter side by side -->
+    <header>
+      <h1>🚴 Bikewatching</h1>
+      <label>
+        Filter by time:
+        <input id="time-slider" type="range" min="-1" max="1440" value="-1" />
+        <time id="selected-time"></time>
+        <em id="any-time">(any time)</em>
+      </label>
+    </header>
+
+    <p class="description">
+      Bluebikes traffic in Boston and Cambridge, March 2024. Circle size is the
+      number of trips at each station; color shows whether more trips start or
+      end there. Green lines are bike lanes.
+    </p>
+
+    <!-- Step 1.2 + 3.2: map container with an SVG overlay for the stations -->
+    <div id="map">
+      <svg></svg>
+    </div>
+
+    <!-- Step 6.2: legend -->
+    <div class="legend">
+      <span class="legend-title">Legend:</span>
+      <div style="--departure-ratio: 1">More departures</div>
+      <div style="--departure-ratio: 0.5">Balanced</div>
+      <div style="--departure-ratio: 0">More arrivals</div>
+    </div>
+  </body>
+</html>

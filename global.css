@@ -1,0 +1,47 @@
+/* Step 0.4: basic page layout */
+body {
+  font: 100%/1.5 system-ui, sans-serif;
+  display: flex;
+  flex-flow: column;
+  max-width: 80em;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 1em;
+}
+
+/* Step 5.1: title on the left, time filter pushed to the right */
+header {
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+
+  h1 {
+    margin: 0;
+  }
+
+  label {
+    margin-left: auto;
+  }
+
+  input {
+    width: 20em;
+  }
+
+  /* On their own line so the slider doesn't jump while the time changes */
+  time,
+  em {
+    display: block;
+    text-align: right;
+  }
+
+  em {
+    color: color-mix(in oklch, canvastext, canvas 45%);
+    font-style: italic;
+  }
+}
+
+.description {
+  margin-block: 0.5em 1em;
+  color: color-mix(in oklch, canvastext, canvas 30%);
+}

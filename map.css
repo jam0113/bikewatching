@@ -1,0 +1,66 @@
+/* Step 1.2: the map fills the rest of the page */
+#map {
+  flex: 1;
+  min-height: 60vh;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Step 3.2: SVG overlay on top of the map, letting drags reach the map */
+#map svg {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Step 6.1 + 6.2: shared colors for the circles and the legend.
+   --departure-ratio is 1 (mostly departures), 0.5 (balanced) or 0 (mostly arrivals). */
+#map circle,
+.legend > div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+/* Step 4.3 + 4.4: see-through circles that still get hover tooltips */
+#map circle {
+  fill: var(--color);
+  fill-opacity: 0.6;
+  stroke: white;
+  stroke-width: 1;
+  pointer-events: auto;
+}
+
+/* Step 6.2: legend (Design 2: separate swatches and labels) */
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  margin-block: 1em;
+
+  .legend-title {
+    color: color-mix(in oklch, canvastext, canvas 45%);
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+
+    &::before {
+      content: '';
+      width: 1em;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--color);
+    }
+  }
+}
